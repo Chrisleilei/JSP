@@ -1,0 +1,93 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Javascript分页</title>
+ <style>
+#fbtn {
+ border-style: solid;
+ border-width: 1px;
+ border-color: #e1e1c9 #e1e1c9 #6e6e56 #6e6e56;
+ padding: 1 1 1 1;
+ width: 115px;
+ height: 30px;
+ 
+}
+#fbtn_txt div {
+ height: 30px;
+ padding-top: 11px;
+ font-size: 20px;
+ font-family:"宋体";
+ color: #800080;
+ cursor: hand;
+ text-align:center
+} 
+ 
+ </style>
+ <script type="text/javascript">
+ var page=1;
+ var pagesize=4;//每页显示数量
+ var pagenum;
+ var showpage='';
+ var showpage1='';
+ var array = new Array();
+ array[0]="电影";
+ array[1]="游戏";
+ array[2]="新闻";
+ array[3]="购物";
+ array[4]="商城";
+ array[5]="音乐";
+ 
+ var contextnum=array.length; //内容总数量
+ var j=0;
+ function showpic(no) {
+ page=no;
+   pagenum=contextnum/pagesize;
+ if (contextnum%pagesize>0) 
+  pagenum=parseInt(contextnum/pagesize)+1;
+  document.getElementById("div_1").innerHTML='';
+ 
+ for (i=1,j=0;i<=array.length,j<6;i++,j++){
+  if(i > (page-1)*pagesize && i<=page*pagesize){
+  document.getElementById(div).innerHTML=array[j];
+   
+  }
+ }
+ 
+ 
+ if (page>1){
+  showpage='<a href="javascript:showpic(1);">首页</a> <a href="javascript:showpic('+(page-1)+');">上一页</a>'
+ }else{
+  showpage='';
+  }
+ if (page<pagenum){
+ showpage1=' <a href="javascript:showpic('+(page+1)+');">下一页</a> <a href="javascript:showpic('+pagenum+');">尾页</a> '
+ }else{
+ showpage1='';
+ }
+ 
+ document.getElementById("pages").innerHTML='页次：'+page+'/<font color=red>'+pagenum+'</font>  共：<font color=red>'+contextnum+'</font> 条 '+showpage+showpage1;
+ } 
+window.onload=function(){
+showpic(1);
+}
+ 
+</script>
+ 
+</head>
+<body>
+ <div id="fbtn">
+  <div id="div_1"> 
+  </div>
+  <div id="div_2"> 
+  </div>
+  <div id="div_3"> 
+  </div>
+  <div id="div_4"> 
+  </div>   
+ </div>
+ 
+ 
+<div id="pages"></div>
+</body>
+</html>
+ 
